@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Produtividade Real</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="js/jquery.js"></script>
+</head>
+<body>
+    
+    <main>
+        <div id="flex-container1">
+            <div id="cronometro"></div>
+            <script src="temporizador-teste.js"></script>
+        </div>
+        <div id="flex-container2">
+            <div id="controle">
+                <div id="blocoIniciar"> 
+                    <input id="campoMateria" class="caixaDeTexto" name="materia" type="text" placeholder="Matéria">
+                
+                    <input id="campoAssunto" class="caixaDeTexto" name="assunto" type="text" placeholder="Assunto">
+                
+                    <input id="botaoIniciar" type="submit" value="Iniciar">
+                </div>
+                <div id="blocoPausarEncerrar">
+                    <input id="botaoPausar" type="button" value="Pausar">
+                    
+                    <input id="botaoEncerrar1" type="button" value="Encerrar">
+                </div>
+                <div id="blocoContinuarEncerrar">
+                    <input id="botaoContinuar" type="button" value="Continuar">
+                    <input id="botaoEncerrar2" type="button" value="Encerrar">
+                </div> 
+            </div>
+            <div id= "historico">
+              
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="footer">
+            <div id="linkGithub">
+                <a href="https://github.com/LeonardoAragaoCode" target="_blank"> Meu Github </a>
+            </div>
+            <p>Criado por Leonardo Aragão</p>
+        </div>
+    </footer>
+    
+    <script>
+        $('#blocoPausarEncerrar, #blocoContinuarEncerrar').fadeOut(0)
+        $('#cronometro').temporizador()
+        
+        $('#botaoIniciar').click(e => {
+            $('#cronometro').iniciarCronometro()
+            $('#blocoIniciar').fadeOut(100)
+            $('#blocoPausarEncerrar').fadeIn(500)
+            $('#blocoIniciar').capturarTexto()
+            
+        })
+        
+        $('#botaoPausar').click(e => {
+            $('#cronometro').pausarCronometro()  
+            $('#blocoPausarEncerrar').hide(0)
+            $('#blocoContinuarEncerrar').show(0)
+        })
+
+        $('#botaoContinuar').click(e => {
+            $('#cronometro').iniciarCronometro()  
+            $('#blocoContinuarEncerrar').hide(0)
+            $('#blocoPausarEncerrar').show(0)
+        })
+
+        $('#botaoEncerrar1').click(e => {
+            $('#cronometro').encerrarCronometro()
+            $('#blocoPausarEncerrar').hide(0)
+            $('#blocoIniciar').show(0)
+            $('#historico').registrador()
+            $('#blocoiniciar').limparCampos()
+        })
+
+        $('#botaoEncerrar2').click(e => {
+            $('#cronometro').encerrarCronometro()
+            $('#blocoContinuarEncerrar').hide(0)
+            $('#blocoIniciar').show(0)
+            $('#historico').registrador()
+            $('#blocoiniciar').limparCampos()
+        })
+    </script>
+</body>
+</html>
